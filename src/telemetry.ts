@@ -4,7 +4,7 @@ import type { EventData, Severity } from './types.js';
 
 /**
  * Telemetry conventions — typed models that ride the existing
- * `POST /v1/events[/bulk]` envelope (the platform's CreateEventDto is the
+ * `POST /api/v1/events[/bulk]` envelope (the platform's CreateEventDto is the
  * wire contract; payload is free-form JSONB). Records carry a discriminated
  * `payload.telemetryType` plus exactly one of metric/span/performance/log.
  *

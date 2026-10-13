@@ -90,7 +90,7 @@ describe('QuantiqenClient', () => {
       await client.flush();
 
       const [url] = fetchMock.mock.calls[0];
-      expect(url).toBe('https://custom.api.com/v1/events/bulk');
+      expect(url).toBe('https://custom.api.com/api/v1/events/bulk');
     });
   });
 
@@ -274,7 +274,7 @@ describe('QuantiqenClient', () => {
       fetchMock.mock.calls.filter(([u]) => u === url);
 
     it('passes an AbortSignal timeout on every request', async () => {
-      const url = 'https://s3-test.example/v1/events/bulk';
+      const url = 'https://s3-test.example/api/v1/events/bulk';
       const fetchMock = vi.fn().mockResolvedValue({
         ok: true,
         status: 201,
@@ -298,7 +298,7 @@ describe('QuantiqenClient', () => {
     });
 
     it('surfaces HTTP <status> error when 5xx retries are exhausted', async () => {
-      const url = 'https://s4-test.example/v1/events/bulk';
+      const url = 'https://s4-test.example/api/v1/events/bulk';
       const fetchMock = vi.fn().mockResolvedValue({
         ok: false,
         status: 503,
@@ -327,7 +327,7 @@ describe('QuantiqenClient', () => {
     });
 
     it('logs non-retryable 4xx and does not retry', async () => {
-      const url = 'https://s5-test.example/v1/events/bulk';
+      const url = 'https://s5-test.example/api/v1/events/bulk';
       const fetchMock = vi.fn().mockResolvedValue({
         ok: false,
         status: 422,

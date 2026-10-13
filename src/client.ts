@@ -46,7 +46,7 @@ export class QuantiqenClient {
     }
 
     this.apiKey = options.apiKey;
-    this.baseUrl = (options.baseUrl || 'https://api.quantiqen.com').replace(
+    this.baseUrl = (options.baseUrl || 'https://quantiqen-backend.onrender.com').replace(
       /\/$/,
       '',
     );
@@ -164,7 +164,7 @@ export class QuantiqenClient {
     }
 
     for (const chunk of chunks) {
-      await this.postWithRetry('/v1/events/bulk', { events: chunk });
+      await this.postWithRetry('/api/v1/events/bulk', { events: chunk });
     }
   }
 
