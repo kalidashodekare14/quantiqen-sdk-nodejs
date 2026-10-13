@@ -39,9 +39,27 @@ describe('QuantiqenClient', () => {
       ).toThrow('Invalid API key format');
     });
 
+    it('throws on unknown qtn_ prefix', () => {
+      expect(
+        () => new QuantiqenClient({ apiKey: 'qtn_bogus_abc123' }),
+      ).toThrow('Invalid API key format');
+    });
+
     it('accepts valid API key', () => {
       expect(
         () => new QuantiqenClient({ apiKey: VALID_KEY }),
+      ).not.toThrow();
+      expect(
+        () =>
+          new QuantiqenClient({
+            apiKey: 'qtn_test_abc123def456ghi789jkl012mno345pqr',
+          }),
+      ).not.toThrow();
+      expect(
+        () =>
+          new QuantiqenClient({
+            apiKey: 'qtn_dev_abc123def456ghi789jkl012mno345pqr',
+          }),
       ).not.toThrow();
     });
   });
@@ -153,7 +171,7 @@ describe('QuantiqenClient', () => {
       const meta = body.events[0].metadata;
       expect(meta.customField).toBe('customValue');
       expect(meta.sdkLanguage).toBe('node');
-      expect(meta.sdkVersion).toBe('0.1.0');
+      expect(meta.sdkVersion).toBe('0.1.1');
       expect(meta.userAgent).toContain('quantiqen-sdk-node');
     });
   });

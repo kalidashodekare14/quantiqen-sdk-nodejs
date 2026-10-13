@@ -268,7 +268,7 @@ describe('client telemetry methods', () => {
     expect(event.idempotencyKey).toMatch(UUID_RE);
     expect(event.payload.telemetryType).toBe('metric');
     expect(event.metadata.sdkLanguage).toBe('node');
-    expect(event.metadata.sdkVersion).toBe('0.1.0');
+    expect(event.metadata.sdkVersion).toBe('0.1.1');
   });
 
   it('sendLog and sendSpan flow through the same bulk path', async () => {

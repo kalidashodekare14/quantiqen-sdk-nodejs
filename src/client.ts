@@ -19,7 +19,7 @@ import type {
   ClientOptions,
 } from './types.js';
 
-const SDK_VERSION = '0.1.0';
+const SDK_VERSION = '0.1.1';
 const SDK_LANGUAGE = 'node';
 const DEFAULT_BATCH_SIZE = 100;
 const DEFAULT_FLUSH_INTERVAL_MS = 5000;
@@ -39,9 +39,9 @@ export class QuantiqenClient {
     if (!options.apiKey) {
       throw new Error('API key is required');
     }
-    if (!options.apiKey.startsWith('qtn_')) {
+    if (!/^qtn_(live|test|dev)_/.test(options.apiKey)) {
       throw new Error(
-        'Invalid API key format. Expected key starting with "qtn_"',
+        'Invalid API key format. Expected key matching "qtn_{live|test|dev}_…"',
       );
     }
 
